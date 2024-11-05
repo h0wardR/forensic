@@ -60,8 +60,8 @@ func connectToGRPCServer(address string) (*grpc.ClientConn, error) {
     return conn, nil
 }
 
-// performRPC1 performs the first RPC call
-func performRPC1(client pb.YourServiceClient, token string) {
+// grpcUserToUserInfo performs the first RPC call
+func grpcUserToUserInfo(client pb.YourServiceClient, token string) {
     ctx, cancel := context.WithTimeout(context.Background(), time.Second)
     defer cancel()
 
@@ -70,8 +70,8 @@ func performRPC1(client pb.YourServiceClient, token string) {
     fmt.Println("Response from RPC1: ", response)
 }
 
-// performRPC2 performs the second RPC call
-func performRPC2(client pb.YourServiceClient, token string) {
+// grpcStructToUserAttributes performs the second RPC call
+func grpcStructToUserAttributes(client pb.YourServiceClient, token string) {
     ctx, cancel := context.WithTimeout(context.Background(), time.Second)
     defer cancel()
 
@@ -97,8 +97,8 @@ func main() {
     client := pb.NewYourServiceClient(conn)
 
     // Perform multiple RPC calls
-    performRPC1(client, config.Token)
-    performRPC2(client, config.Token)
+    grpcUserToUserInfo(client, config.Token)
+    grpcStructToUserAttributes(client, config.Token)
 
     // Additional logic if necessary
     fmt.Println("All RPC calls were successful")
